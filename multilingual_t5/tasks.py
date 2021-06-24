@@ -25,6 +25,7 @@ import t5.data.tasks
 from t5.evaluation import metrics
 import tensorflow_datasets as tfds
 
+# 模型依赖的词典路径
 DEFAULT_SPM_PATH = "gs://t5-data/vocabs/mc4.250000.100extra/sentencepiece.model"
 
 
@@ -40,8 +41,10 @@ DEFAULT_OUTPUT_FEATURES = {
         vocabulary=DEFAULT_VOCAB, add_eos=True)
 }
 
+#包含100种语言的语料库，收集方法类似于t5中使用的语料库
 MC4_LANGS = tfds.text.c4.MC4_LANGUAGES
 
+# 论文的ablation中提出加入wikipidea中的语料库来训练模型
 # Multilingual BERT was trained on 104 languages. We include 103 of these
 # languages, as tfds.wikipedia doesn't distinguish between simplified and
 # traditional Chinese, and only contains "zh" (which is a mix of simplified
